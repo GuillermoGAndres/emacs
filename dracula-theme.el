@@ -16,7 +16,7 @@
 ;;; Code:
 (deftheme dracula)
 
-
+
 ;;;; Configuration options:
 
 (defgroup dracula nil
@@ -72,7 +72,7 @@ There is a lot of discussion behind the 256 colors theme (see URL
 `https://github.com/dracula/emacs/pull/57').  Please take time to
 read it before opening a new issue about your will.")
 
-
+
 ;;;; Theme definition:
 
 ;; Assigment form: VARIABLE COLOR [256-COLOR [TTY-COLOR]]
@@ -108,8 +108,8 @@ read it before opening a new issue about your will.")
                (info-string :foreground ,dracula-yellow)
                (lazy-highlight :foreground ,fg2 :background ,bg2)
                (link :foreground ,dracula-cyan :underline t)
-               (linum :slant italic :foreground ,bg4 :background ,dracula-bg)
-               (line-number :slant italic :foreground ,bg4 :background ,dracula-bg)
+               (linum :slant italic :foreground ,dracula-comment :background ,dracula-bg)
+               (line-number :slant italic :foreground ,dracula-comment :background ,dracula-bg)
                (match :background ,dracula-yellow :foreground ,dracula-bg)
                (minibuffer-prompt
                 ,@(if dracula-alternate-mode-line-and-minibuffer
@@ -741,6 +741,7 @@ read it before opening a new issue about your will.")
                (web-mode-string-face :foreground ,dracula-yellow)
                (web-mode-type-face :inherit font-lock-type-face)
                (web-mode-warning-face :inherit font-lock-warning-face)
+               (web-mode-css-property-name-face :inherit font-lock-constant-face)
                ;; which-func
                (which-func :inherit font-lock-function-name-face)
                ;; which-key
@@ -762,7 +763,23 @@ read it before opening a new issue about your will.")
                (whitespace-trailing :inherit trailing-whitespace)
                ;; yard-mode
                (yard-tag-face :inherit font-lock-builtin-face)
-               (yard-directive-face :inherit font-lock-builtin-face))))
+               (yard-directive-face :inherit font-lock-builtin-face)
+               ;; diredfl
+               (diredfl-date-time :foreground "#b8c4d7")
+               (diredfl-dir-heading :foreground "#ceeca4")
+               (diredfl-dir-name :foreground "#F0DFAF")
+               (diredfl-dir-priv :foreground "#96e7e5")
+               (diredfl-exec-priv :foreground "#D1907F")
+               (diredfl-file-name nil)
+               (diredfl-file-suffix :inherit diredfl-file-name)
+               (diredfl-no-priv nil)
+               (diredfl-number :foreground "#F0DFAF")
+               (diredfl-read-priv :foreground "#ceeca4")
+               (diredfl-symlink :foreground "#96e7e5")
+               (diredfl-write-priv :foreground "#F0DFAF")
+               ;; display line numbers
+               (line-number-current-line ((t (:inherit line-number :foreground "#ffffff"))))
+               )))
 
   (apply #'custom-theme-set-faces
          'dracula
@@ -789,7 +806,7 @@ read it before opening a new issue about your will.")
            whole-theme)))
 
 
-
+
 ;;;###autoload
 (when load-file-name
   (add-to-list 'custom-theme-load-path
